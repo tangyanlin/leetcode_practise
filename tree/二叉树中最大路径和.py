@@ -24,13 +24,9 @@ class Solution:
         if root is None:
             return 0
         value = root.val
-        leftnum = -1001
-        rightnum = -1001
-        if root.left:
-            leftnum = self.handle(root.left)
-        if root.right:
-            rightnum = self.handle(root.right)
-        temp_max_num = max([leftnum, leftnum + value, leftnum + value + rightnum, rightnum, value, value+rightnum])
+        leftnum = max(0, self.handle(root.left))
+        rightnum = max(0, self.handle(root.right))
+        temp_max_num = leftnum + value + rightnum
         if temp_max_num > self.max_num:
             self.max_num = temp_max_num
-        return max([leftnum + value, value, value+rightnum])
+        return max([leftnum + value, value+rightnum])

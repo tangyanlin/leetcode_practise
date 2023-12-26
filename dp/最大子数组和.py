@@ -24,3 +24,17 @@ class Solution:
             else:
                 right += 1
         return max_num
+
+
+    def maxSubArray(self, nums: List[int]) -> int:
+        if len(nums) == 0: return 0
+        if len(nums) == 1: return nums[0]
+        dp = [nums[i] for i in range(len(nums))]
+        max_sum = dp[0]
+        # dp[i]表示以nums[i]结尾的连续子数组的最大和
+        for i in range(1, len(nums)):
+            # 1、当前元素当作最大连续子数组
+            # 2、前面最大连续子数组+当前元素当作最大连续子数组
+            dp[i] = max(nums[i], dp[i-1]+nums[i])
+            if max_sum < dp[i]: max_sum = dp[i]
+        return max_sum

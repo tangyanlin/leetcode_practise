@@ -11,3 +11,16 @@ class Solution:
         head.next.next = head
         head.next = None
         return last
+
+    #非递归写法
+    def reverseList(self, head: ListNode) -> ListNode:
+        # 头插法
+        # p 当前指针，dummy 倒转后链表的新head，
+        dummy = ListNode(-1)
+        p = head
+        while p:
+            temp = p.next
+            p.next = dummy.next
+            dummy.next = p 
+            p = temp
+        return dummy.next

@@ -14,4 +14,23 @@ class Solution:
             return dfs(root.left, min_num, root.val) and dfs(root.right, root.val, max_num)
         
         return dfs(root, float(-inf), float(+inf))
+
+    
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        if not root:
+            return True
+        stack = []
+        cur = root
+        max_num = cur.val
+        while stack or cur:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop()
+            if cur.val <= max_num:
+                return False
+            else:
+                max_num =  cur.val
+            cur = cur.right
+        return True
             

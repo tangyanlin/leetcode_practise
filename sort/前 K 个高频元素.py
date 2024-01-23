@@ -8,11 +8,12 @@ class Solution:
         for num in nums:
             hashmap[num] += 1
             max_len = max(hashmap[num], max_len)
-        res = [[] for i in range(max_len+1)]
-        result = []
-        for key, v in hashmap.items():
-            res[v].append(key)
-        for i in range(max_len, 0, -1):
-            if len(res[i]) > 0 and len(result)<k:
-                result += res[i]
-        return result
+
+        values = [(value, key)for key, value in hashmap.items()]
+        hp = values[:k]
+        heapq.heapify(hp)
+        for i in range(k, len(values)):
+            if values[i][0] > hp[0][0]:
+                heapq.heappop(hp)
+                heapq.heappush(hp, values[i])
+        return [h[1]for h in hp] 

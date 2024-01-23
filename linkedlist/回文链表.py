@@ -13,6 +13,8 @@ class Solution:
             stack.append(slow.val)
             slow = slow.next
             fast = fast.next.next
+        # fast为空则为偶数个
+        # fast不为空则为奇数个
         # 链表有奇数个节点 中间奇数位不需要比较 slow向后移一位
         if fast: slow = slow.next
         while slow:

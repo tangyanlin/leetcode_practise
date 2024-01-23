@@ -1,6 +1,7 @@
 from typing import List
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
+        #dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1
         if len(matrix) < 1:
             return -1
         if len(matrix[0]) < 1:

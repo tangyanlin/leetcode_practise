@@ -8,4 +8,4 @@ class Solution:
             elif numbers[i] + numbers[j] > target:
                 j -= 1
             else:
-                return [i, j]
+                return [i+1, j+1]

@@ -7,7 +7,7 @@ class Solution:
         left = 0
         right = int(x/2)+1
         while left < right:
-            middle = left + int((right -left+1)/2)
+            middle = left + (right -left+1)//2
             res = middle*middle
             if res <= x:
                 left = middle

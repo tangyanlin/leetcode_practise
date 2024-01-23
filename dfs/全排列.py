@@ -4,18 +4,15 @@ class Solution:
         if not nums: return []
         # 用used来全场记录我当前的排列用到了哪些元素  
         # 如果用了的话就continue 因为排列是不能重复的
-        def dfs(path, res, nums, used):
+        def dfs(path):
             if len(path) == len(nums):
                 res.append(copy.deepcopy(path))
                 return
             for i in range(len(nums)):
-                if nums[i] in used: continue
+                if nums[i] in path: continue
                 path.append(nums[i])
-                used.append(nums[i])
-                dfs(path, res, nums, used)
+                dfs(path)
                 path.pop()
-                used.pop()
         path, res = [], []
-        used = []
-        dfs(path, res, nums, used)
+        dfs(path)
         return res
